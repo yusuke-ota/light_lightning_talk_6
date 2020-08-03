@@ -132,6 +132,7 @@ SFUを使う
 ![height:450px](./image_for_webrtc/UnityWebRTC機能概略.drawio.svg)
 
 リモートクライアント -> Unityに動画、音声がない
+[今年中実装予定らしい](https://forum.unity.com/threads/unity-render-streaming-introduction-faq.742481/page-8#post-6074178)
 
 ---
 
@@ -165,3 +166,16 @@ SFUを使う
 https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ---
+
+<!-- todo:<https://github.com/Unity-Technologies/UnityRenderStreaming/tree/develop/WebApp>これ読んで、改造する -->
+
+---
+
+## まとめ
+
+* WebRTCでブラウザ間で直接高速にデータ通信を行える
+* UniryのWebRTCは現在
+  * MediaStream: Unity -> ブラウザ
+  * DataChannel: Unity <-> ブラウザ
+* 日本語ドキュメント充実している
+* DataChannelでやり取りするデータは自由
