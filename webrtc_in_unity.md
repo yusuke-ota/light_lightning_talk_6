@@ -99,6 +99,34 @@ reveal h6 {
 
 ---
 
+## WebRTCのデメリット
+
+P2Pで通信を行う
+=> 人数が増えるとコネクション数がすごいことになる
+
+--
+
+![height:450px](./image_for_webrtc/WebRTCPeerConection.drawio.svg)
+
+--
+
+![height:450px](./image_for_webrtc/WebRTCPeerConection2.drawio.svg)
+
+--
+
+![height:450px](./image_for_webrtc/WebRTCPeerConection3.drawio.svg)
+
+---
+
+## 対処法
+
+SFUを使う
+(間に配信用のサーバを噛まそう)
+
+![height:450px](./image_for_webrtc/WebRTCSFU.drawio.svg)
+
+---
+
 ## Unity WebRTCの機能
 
 ![height:450px](./image_for_webrtc/UnityWebRTC機能概略.drawio.svg)
