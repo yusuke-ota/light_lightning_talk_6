@@ -134,12 +134,20 @@ ARTrackedImageManager.trackedImagePrefab = GameObject
 
 --
 
+<img src="./image_for_position_fitting/MakeCintentAppearAt.drawio.svg" height="450">
+
+--
+
 ### GameObject.Transform
 
 * +ARSessionは固定するので、  
   処理の許す限り対応付けられる
 * -入れ子のオブジェクトの回転を扱うようになると、  
   Quaternionで頭がおかしくなって死ぬ
+
+--
+
+<img src="./image_for_position_fitting/transform.drawio.svg" height="450">
 
 --
 
@@ -151,6 +159,10 @@ ARTrackedImageManager.trackedImagePrefab = GameObject
 * -駆動するのに対応する画像を設定する必要がある
 * -アプリ起動中に移動する物体は対応できない  
   (ARTrackedImageManager.trackedImagesChangedを使う)
+
+--
+
+<img src="./image_for_position_fitting/TrackingImage.drawio.svg" height="450">
 
 ---
 

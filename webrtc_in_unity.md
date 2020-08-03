@@ -21,11 +21,11 @@ grid-container {
 [data-markdown] > h5 {
     grid-area: header;
 }
-/* pタグはデフォルトでリード文*/
+/* pタグはデフォルトでリード文 */
 [data-markdown] > p {
     grid-area: lead;
 }
-/* ulタグはデフォルトでメイン*/
+/* ulタグはデフォルトでメイン */
 [data-markdown] > ul {
     grid-area: main;
 }
@@ -162,12 +162,11 @@ SFUを使う
 * ブラウザに表示するボタン関係:  
   GitHubのUnity公式リポジトリの[app.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/release/2.0.2/WebApp/public/scripts/app.js)の50行目~93行目あたり
 
-<!-- WebXRでデバイスの角度とか取ってリモートレンダリングっぽさをもっと出したいような気がする気がする気がする
-https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
-
 ---
 
 <!-- todo:<https://github.com/Unity-Technologies/UnityRenderStreaming/tree/develop/WebApp>これ読んで、改造する -->
+<!-- WebXRでデバイスの角度とか取ってリモートレンダリングっぽさをもっと出したい httpsが面倒だけど
+https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ---
 
