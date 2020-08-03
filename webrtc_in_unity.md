@@ -164,9 +164,46 @@ SFUを使う
 
 ---
 
-<!-- todo:<https://github.com/Unity-Technologies/UnityRenderStreaming/tree/develop/WebApp>これ読んで、改造する -->
 <!-- WebXRでデバイスの角度とか取ってリモートレンダリングっぽさをもっと出したい httpsが面倒だけど
 https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
+
+## ちょっといじってみる
+
+---
+
+## モデルインポート
+
+--
+
+<!-- todo:image追加 -->
+
+---
+
+## ブラウザのボタン変更
+
+app.jsのボタン実装部分をゴリっとする
+
+--
+
+<!-- todo:image追加 -->
+
+---
+
+## 送受信するメッセージを変更
+
+ブラウザ側メッセージを変更する
+
+--
+
+Unity側メッセージを変更する
+
+--
+
+イベント割り当て
+
+--
+
+<!-- todo:動画追加 -->
 
 ---
 
