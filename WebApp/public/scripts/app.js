@@ -73,6 +73,15 @@ function onClickPlayButton() {
     sendClickEvent(videoPlayer, 3);
   });
 
+  // add original　button
+  const elementOriginalButton = document.createElement(`button`);
+  elementOriginalButton.id = "originalButton";
+  elementOriginalButton.innerHTML = "something";
+  playerDiv.appendChild(elementOriginalButton);
+  elementOriginalButton.addEventListener("click", function(){
+    sendClickEvent(videoPlayer, 4);
+  });
+
   // add fullscreen button
   const elementFullscreenButton = document.createElement('img');
   elementFullscreenButton.id = 'fullscreenButton';
@@ -109,7 +118,7 @@ async function setupVideoPlayer(elements, config) {
   registerGamepadEvents(videoPlayer);
   registerKeyboardEvents(videoPlayer);
   registerMouseEvents(videoPlayer, elements[0]);
-  
+
   return videoPlayer;
 }
 
