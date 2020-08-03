@@ -179,3 +179,26 @@ https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
   * DataChannel: Unity <-> ブラウザ
 * 日本語ドキュメント充実している
 * DataChannelでやり取りするデータは自由
+
+---
+
+## 参考文献
+
+* 低遅延ビデオストリーミングの現在  
+  <https://www.dpsj.co.jp/tech-articles/low-latency>
+* UnityRenderStreaming Githubリポジトリ  
+  <https://github.com/Unity-Technologies/UnityRenderStreaming>
+
+---
+
+## 気になる人向け
+
+* WebRTC コトハジメ  
+  <https://gist.github.com/voluntas/67e5a26915751226fdcf>
+* 詳解 WebRTC  
+  <https://gist.github.com/voluntas/a9dc017ea85aea5ffb7db73af5c6b4f9>
+* Render Streaming  
+  WebRTC を用いたストリーミングソリューション  
+  <https://learning.unity3d.jp/3339/>
+* MDN-WebRTC API  
+  <https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API>
