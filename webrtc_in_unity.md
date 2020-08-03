@@ -93,7 +93,7 @@ reveal h6 {
 
 ## 速度比較
 
-![height:450px](https://www.dpsj.co.jp/wp-content/uploads/dpsj/img-page-low-latency-figure.png)
+<img src="https://www.dpsj.co.jp/wp-content/uploads/dpsj/img-page-low-latency-figure.png" height="400">
 
 画像引用:<https://www.dpsj.co.jp/tech-articles/low-latency>
 
@@ -106,15 +106,15 @@ P2Pで通信を行う
 
 --
 
-![height:450px](./image_for_webrtc/WebRTCPeerConection.drawio.svg)
+<img src="./image_for_webrtc/WebRTCPeerConection.drawio.svg" height="500">
 
 --
 
-![height:450px](./image_for_webrtc/WebRTCPeerConection2.drawio.svg)
+<img src="./image_for_webrtc/WebRTCPeerConection2.drawio.svg" height="500">
 
 --
 
-![height:450px](./image_for_webrtc/WebRTCPeerConection3.drawio.svg)
+<img src="./image_for_webrtc/WebRTCPeerConection3.drawio.svg" height="500">
 
 ---
 
@@ -123,13 +123,13 @@ P2Pで通信を行う
 SFUを使う
 (間に配信用のサーバを噛まそう)
 
-![height:450px](./image_for_webrtc/WebRTCSFU.drawio.svg)
+<img src="./image_for_webrtc/WebRTCSFU.drawio.svg" height="450">
 
 ---
 
 ## Unity WebRTCの機能
 
-![height:450px](./image_for_webrtc/UnityWebRTC機能概略.drawio.svg)
+<img src="./image_for_webrtc/UnityWebRTC機能概略.drawio.svg" height="350">
 
 リモートクライアント -> Unityに動画、音声がない
 [今年中実装予定らしい](https://forum.unity.com/threads/unity-render-streaming-introduction-faq.742481/page-8#post-6074178)
@@ -157,10 +157,14 @@ SFUを使う
 
 * Unity側のリモート入力のパース関係:  
   テンプレートのRemoteInput.cs  
+
 * JavaScript側の入力のパース関係:  
-  GitHubのUnity公式リポジトリの[register-events.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/ef41b83d0334a055c7158038b948fa04d887ee19/WebApp/public/scripts/register-events.js)  
+  GitHubのUnity公式リポジトリの  
+  [register-events.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/ef41b83d0334a055c7158038b948fa04d887ee19/WebApp/public/scripts/register-events.js)  
+  
 * ブラウザに表示するボタン関係:  
-  GitHubのUnity公式リポジトリの[app.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/release/2.0.2/WebApp/public/scripts/app.js)の50行目~93行目あたり
+  GitHubのUnity公式リポジトリの  
+  [app.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/release/2.0.2/WebApp/public/scripts/app.js)の50行目~93行目あたり
 
 ---
 
@@ -173,9 +177,7 @@ https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ## モデルインポート
 
---
-
-<!-- todo:image追加 -->
+<img src="./image_for_webrtc/UnityChanInport.png" height="500">
 
 ---
 

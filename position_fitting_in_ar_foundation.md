@@ -79,13 +79,13 @@ Twitterを始めたが何を書けばいいかわからない
 
 ### プロジェクトビュー
 
-![height:450px](./image_for_position_fitting/ARFoundationシーン構造.png)
+<img src="./image_for_position_fitting/ARFoundationシーン構造.png" height="450">
 
 --
 
 ## 概略図
 
-![height:450px](./image_for_position_fitting/オブジェクト関係概略図.drawio.svg)
+<img src="./image_for_position_fitting/オブジェクト関係概略図.drawio.svg" height="450">
 
 ---
 
@@ -124,13 +124,9 @@ ARTrackedImageManager.trackedImagePrefab = GameObject
 ### ARSession.MakeContentAppearAt(省略)
 
 * +実装側で計算する必要がないので楽
-* -ARSessionOrigin(1つしかない)を移動させるので、  
-  現実のある点と1対1対応でなければならない
 
-**例**
-
-* OK: 固定メインディスプレイの横にメモを表示させる(1対1)
-* NG: すべてのディスプレイの横にメモを表示させる(n対n)
+* -ARSessionOrigin(1つしかない)を移動させる  
+  →現実のある点と1対1対応でなければならない
 
 --
 
@@ -142,8 +138,8 @@ ARTrackedImageManager.trackedImagePrefab = GameObject
 
 * +ARSessionは固定するので、  
   処理の許す限り対応付けられる
-* -入れ子のオブジェクトの回転を扱うようになると、  
-  Quaternionで頭がおかしくなって死ぬ
+
+* -入れ子のオブジェクトの回転を扱うようになると、Quaternionで頭がおかしくなって死ぬ
 
 --
 
@@ -153,10 +149,11 @@ ARTrackedImageManager.trackedImagePrefab = GameObject
 
 ### ARTrackedImageManager.trackedImagePrefab
 
-* +簡単なものであれば、エディタ上で実装できる
-* +位置が決まっていない物体に対して、
+* +簡単なものであればエディタ上で実装できる
+* +位置が決まっていない物体に対して、  
   位置合わせをすることができる
-* -駆動するのに対応する画像を設定する必要がある
+
+* -駆動するのに対応する画像の設定が必要
 * -アプリ起動中に移動する物体は対応できない  
   (ARTrackedImageManager.trackedImagesChangedを使う)
 
