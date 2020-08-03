@@ -161,7 +161,7 @@ SFUを使う
 * JavaScript側の入力のパース関係:  
   GitHubのUnity公式リポジトリの  
   [register-events.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/ef41b83d0334a055c7158038b948fa04d887ee19/WebApp/public/scripts/register-events.js)  
-  
+
 * ブラウザに表示するボタン関係:  
   GitHubのUnity公式リポジトリの  
   [app.js](https://github.com/Unity-Technologies/UnityRenderStreaming/blob/release/2.0.2/WebApp/public/scripts/app.js)の50行目~93行目あたり
@@ -183,11 +183,61 @@ https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ## ブラウザのボタン変更
 
-app.jsのボタン実装部分をゴリっとする
+app.jsのボタン実装部分を書き換える
+
+```js: app.js
+// add original button
+const elementOriginalButton = document.createElement(`button`);
+elementOriginalButton.id = "originalButton";
+elementOriginalButton.innerHTML = "AnimationOnOff";
+playerDiv.appendChild(elementOriginalButton);
+elementOriginalButton.addEventListener("click", function(){
+  sendClickEvent(videoPlayer, 3);
+});
+```
 
 --
 
-<!-- todo:image追加 -->
+style.cssのボタン部分を書き換える
+
+```css
+#originalButton{
+    position: absolute;
+    bottom: 10px;
+...省略
+}
+```
+
+--
+
+<img src="./image_for_webrtc/BottunChange.png" height="500">
+
+---
+
+## Unityのイベント割り当て
+
+アニメーションOn/Off切り替えスクリプト作成
+
+```C#
+public void OnPushButton()
+{
+    switch (_isAnimationPlaying)
+    {
+        case true:
+            _playableDirector.Pause();
+            _isAnimationPlaying = false;
+            break;
+        case false:
+            _playableDirector.Resume();
+            _isAnimationPlaying = true;
+            break;
+    }
+}
+```
+
+--
+
+<img src="./image_for_webrtc/インスペクター変更.png" height="500">
 
 ---
 
@@ -198,10 +248,6 @@ app.jsのボタン実装部分をゴリっとする
 --
 
 Unity側メッセージを変更する
-
---
-
-イベント割り当て
 
 --
 
