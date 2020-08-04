@@ -250,9 +250,9 @@ public void OnPushButton()
 ```html
 <!-- index.html -->
 <body>
-  <!-- ファイル読み込み用ボタンの追加 -->
-  <!-- 追加 --><input type="file" id="inportFile"><br>
   <div id="player"></div>
+  <!-- ファイル読み込み用ボタンの追加 -->
+  <!-- 追加 --><input type="file" id="ImportData" accept="image/png">
 </body>
 ```
 
@@ -300,27 +300,35 @@ const InputEvent = {
 export function registerDataInportEvent(videoPlayer) {
   const _videoPlayer = videoPlayer
   // 画像の読み込み
-  var ImportData = document.getElementById("inportFile");
+  var ImportData = document.getElementById(`ImportData`);
 
   ImportData.addEventListener("change", function(evt){
     var file = evt.target.files;
     var reader = new FileReader();
 
+    //dataURL形式でファイルを読み込む
     reader.readAsDataURL(file[0]);
 
-    //ファイルの読込後の処理
+    //ファイルの読込が終了した時の処理
     reader.onload = function(){
       let dataUrl = reader.result;
+      let height = dataUrl.height;
+      let widht = dataUrl.widht;
+
+      // 読み込んだdataUrlを整形する
       var sendData = dataUrl.split(',');
-      sendImportData(_videoplayer, sendData);
+      // 送信作業
+      sendImportData(_videoPlayer, sendData, height, widht);
     }
   },false);
 
-  function sendImportData(_videoPlayer, sendData){
+    function sendImportData(_videoPlayer, sendData, height, widht){
     var data = new DataView(new ArrayBuffer(sendData[1].length + 2));
     data.setUint8(0, InputEvent.ImportData);
-    data.setUint8(1, dataType[dataUrl]);
-    data.setUint8(2, sendData[1])
+    data.setUint8(1, dataType[sendData[0]]);
+    data.setUint16(2, height);
+    data.setUint16(4, widht);
+    data.setUint8(6, sendData[1])
     _videoPlayer && _videoPlayer.sendMsg(data.buffer);
   }
 }
@@ -334,12 +342,42 @@ export function registerDataInportEvent(videoPlayer) {
 
 ```C#
 // RemoteInput.cs
-
+enum EventType
+{
+    Keyboard = 0,
+    Mouse = 1,
+    MouseWheel = 2,
+    Touch = 3,
+    ButtonClick = 4,
+    Gamepad = 5,
+    /* 追加 */ImportData = 6
+}
 ```
 
 --
 
-<!-- todo:動画追加 -->
+EventType.ImportDataの時の処理を追加
+
+```C#
+// RemoteInput.cs
+public void ProcessInput(byte[] bytes)
+{
+    switch ((EventType)bytes[0])
+    {
+        case EventType.Keyboard:
+        (省略)
+        case EventType.ImportData:
+            var height = BitConverter.ToUInt16(bytes, 2);
+            var width = BitConverter.ToUInt16(bytes, 4);
+            (省略)
+            break;
+    }
+}
+```
+
+---
+
+<video autoplay loop controls height="500"><source src="./image_for_webrtc/Demo.mp4"></video>
 
 ---
 
