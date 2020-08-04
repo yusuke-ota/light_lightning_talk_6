@@ -241,13 +241,101 @@ public void OnPushButton()
 
 ---
 
-## 送受信するメッセージを変更
+## 送受信するメッセージを追加
 
-ブラウザ側メッセージを変更する
+### html側
+
+ボタンの追加
+
+```html
+<!-- index.html -->
+<body>
+  <!-- ファイル読み込み用ボタンの追加 -->
+  <!-- 追加 --><input type="file" id="inportFile"><br>
+  <div id="player"></div>
+</body>
+```
+
+---
+
+### JavaScript側
+
+イベントの追加
+
+```js
+// app.js
+import {
+  registerGamepadEvents,
+  registerKeyboardEvents,
+  registerMouseEvents,
+  sendClickEvent,
+  /*追加*/ registerDataInportEvent
+} from "./register-events.js";
+
+```
 
 --
 
-Unity側メッセージを変更する
+入力の種類を追加(メッセージのパース用)
+
+```js
+// resister-event.js
+const InputEvent = {
+  Keyboard: 0,
+  Mouse: 1,
+  MouseWheel: 2,
+  Touch: 3,
+  ButtonClick: 4,
+  Gamepad: 5,
+  /*追加*/ImportData: 6
+};
+```
+
+--
+
+メッセージ送信用関数実装
+
+```js
+// resister-event.js
+export function registerDataInportEvent(videoPlayer) {
+  const _videoPlayer = videoPlayer
+  // 画像の読み込み
+  var ImportData = document.getElementById("inportFile");
+
+  ImportData.addEventListener("change", function(evt){
+    var file = evt.target.files;
+    var reader = new FileReader();
+
+    reader.readAsDataURL(file[0]);
+
+    //ファイルの読込後の処理
+    reader.onload = function(){
+      let dataUrl = reader.result;
+      var sendData = dataUrl.split(',');
+      sendImportData(_videoplayer, sendData);
+    }
+  },false);
+
+  function sendImportData(_videoPlayer, sendData){
+    var data = new DataView(new ArrayBuffer(sendData[1].length + 2));
+    data.setUint8(0, InputEvent.ImportData);
+    data.setUint8(1, dataType[dataUrl]);
+    data.setUint8(2, sendData[1])
+    _videoPlayer && _videoPlayer.sendMsg(data.buffer);
+  }
+}
+```
+
+---
+
+### Unity側
+
+入力の種類を追加(メッセージのパース用)
+
+```C#
+// RemoteInput.cs
+
+```
 
 --
 
