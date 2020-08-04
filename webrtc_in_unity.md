@@ -177,7 +177,7 @@ https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ## モデルインポート
 
-<img src="./image_for_webrtc/UnityChanInport.png" height="500">
+<img src="./image_for_webrtc/UnityChanimport.png" height="500">
 
 ---
 
@@ -269,7 +269,7 @@ import {
   registerKeyboardEvents,
   registerMouseEvents,
   sendClickEvent,
-  /*追加*/ registerDataInportEvent
+  /*追加*/ registerDataimportEvent
 } from "./register-events.js";
 
 ```
@@ -297,7 +297,7 @@ const InputEvent = {
 
 ```js
 // resister-event.js
-export function registerDataInportEvent(videoPlayer) {
+export function registerDataimportEvent(videoPlayer) {
   const _videoPlayer = videoPlayer
   // 画像の読み込み
   var ImportData = document.getElementById(`ImportData`);
