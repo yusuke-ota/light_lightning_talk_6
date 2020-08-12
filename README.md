@@ -18,3 +18,10 @@ GitHub上で、見たいmdファイルを開く
 2. 拡張機能「vscode-reveal」ver4.0.2を有効にしたVSCodeを開く
 3. 見たいmdファイルを開く
 4. VSCodeウィンドウ右下の<http://localhost:XXXX>と書かれたボタンを押す
+
+## mdファイルの内容
+
+|名前|LT名|対象|
+|:---:|:---:|:---:|
+|position_fitting_in_ar_foundation.md|Unity ARFoundationの座標移動系の話|~ARFoundationちょっと触ってみた人|
+|webrtc_in_unity.md|UnityのWebRTC機能を触ってみた|PCからデバイスへの動画ストリーミングが気になる人|
