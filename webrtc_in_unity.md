@@ -296,39 +296,51 @@ const InputEvent = {
 メッセージ送信用関数実装
 
 ```js
-// resister-event.js
-export function registerDataimportEvent(videoPlayer) {
+const dataType = {
+  "data:image/png;base64" : 0
+}
+
+export function registerDataImportEvent(videoPlayer) {
   const _videoPlayer = videoPlayer
   // 画像の読み込み
-  var ImportData = document.getElementById(`ImportData`);
+  const ImportData = document.getElementById(`ImportData`);
 
-  ImportData.addEventListener("change", function(evt){
-    var file = evt.target.files;
-    var reader = new FileReader();
-
-    //dataURL形式でファイルを読み込む
-    reader.readAsDataURL(file[0]);
+  ImportData.addEventListener("change", function(){
+    const file = ImportData.files;
+    let reader = new FileReader();
+    let image = new Image();
 
     //ファイルの読込が終了した時の処理
     reader.onload = function(){
       let dataUrl = reader.result;
-      let height = dataUrl.height;
-      let widht = dataUrl.widht;
 
       // 読み込んだdataUrlを整形する
-      var sendData = dataUrl.split(',');
-      // 送信作業
-      sendImportData(_videoPlayer, sendData, height, widht);
+      const sendData = dataUrl.split(",", 2);
+
+      image.onload = function (){
+        let height = this.height;
+        let width = this.width;
+
+        // 送信作業
+        sendImportData(_videoPlayer, sendData, height, width);
+      }
+
+      image.src = dataUrl;
     }
+
+    reader.readAsDataURL(file[0]);
   },false);
 
-    function sendImportData(_videoPlayer, sendData, height, widht){
-    var data = new DataView(new ArrayBuffer(sendData[1].length + 2));
+  function sendImportData(_videoPlayer, sendData, height, width){
+    let data = new DataView(new ArrayBuffer(sendData[1].length + 6));
     data.setUint8(0, InputEvent.ImportData);
     data.setUint8(1, dataType[sendData[0]]);
     data.setUint16(2, height);
-    data.setUint16(4, widht);
-    data.setUint8(6, sendData[1])
+    data.setUint16(4, width);
+    for (let index = 0; index < sendData[1].length; index++){
+      data.setUint8(index + 6, sendData[1].charCodeAt(index))
+    }
+
     _videoPlayer && _videoPlayer.sendMsg(data.buffer);
   }
 }
@@ -367,9 +379,37 @@ public void ProcessInput(byte[] bytes)
         case EventType.Keyboard:
         (省略)
         case EventType.ImportData:
-            var height = BitConverter.ToUInt16(bytes, 2);
-            var width = BitConverter.ToUInt16(bytes, 4);
-            (省略)
+            // 送られてくるデータのリトルエンディアン(ex: [0],[123],[0],[245])
+            // 詰め替えて、ビッグエンディアン形式にする
+
+            // ex: [0],[123] -> [125],[0]
+            var heightBytes = new []{bytes[3], bytes[2]};
+            var height = BitConverter.ToUInt16(heightBytes, 0);
+            // ex: [0],[245] -> [245],[0]
+            var widthBytes = new []{bytes[5], bytes[4]};
+            var width = BitConverter.ToUInt16(widthBytes, 0);
+
+            // 画像データ部分だけを取り出す
+            // span型が使えるなら、そちらの方が効率的
+            var imageBytesBase64 = new byte[bytes.Length - 6];
+            Array.Copy(bytes, 6, imageBytesBase64, 0, imageBytesBase64.Length);
+
+
+            // 欲しい画像データはブラウザで以下の工程で変換されている。
+            // 画像データ -> base64 string -> バイナリ
+            // バイナリ ->  base64 string -> 画像データと逆変換する。
+
+            // バイナリ -> base64 string
+            var imageByteString = Encoding.UTF8.GetString(imageBytesBase64);
+            // base64 string -> 画像データ(バイナリ)
+            var imageBytes = Convert.FromBase64String(imageByteString);
+
+            // 画像データ(バイナリ)をテクスチャに変換
+            UE.Texture2D texture = new UE.Texture2D(width, height);
+            UE.ImageConversion.LoadImage(texture, imageBytes);
+            // Unity上の画像のテクスチャと入れ替える(ChangeNewTextureは自作)
+            ChangeNewTexture changeNewTexture = new ChangeNewTexture();
+            changeNewTexture.ChangeTexture(texture);
             break;
     }
 }
@@ -398,6 +438,8 @@ public void ProcessInput(byte[] bytes)
   <https://www.dpsj.co.jp/tech-articles/low-latency>
 * UnityRenderStreaming Githubリポジトリ  
   <https://github.com/Unity-Technologies/UnityRenderStreaming>
+* Mozilla web docs  
+  <https://developer.mozilla.org/ja/>
 
 ---
 
