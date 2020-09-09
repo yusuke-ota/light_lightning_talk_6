@@ -177,7 +177,7 @@ https://codelabs.developers.google.com/codelabs/ar-with-webxr-ja/#3 -->
 
 ## モデルインポート
 
-<img src="./image_for_webrtc/UnityChanimport.png" height="500">
+<img src="./image_for_webrtc/UnityChanImport.png" height="500">
 
 ---
 
